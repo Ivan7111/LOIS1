@@ -32,6 +32,7 @@ public class Main {
                     return 0;
                 }
                 check = true;
+                operandSymbolNumber = 0;
             }
             int symbolNumber = in.charAt(i);
             if((symbolNumber < 91 && symbolNumber > 64) || (symbolNumber == 49 || symbolNumber == 48) && !check){ // проверка на буквы и 1 0
@@ -84,6 +85,8 @@ public class Main {
                 }
             }
             if (symbolNumber == 33 && !check){ // проверка на !
+                operandStreak++;
+                symbolStreak++;
                 check = true;
             }
             if(!check){
@@ -157,19 +160,19 @@ public class Main {
             switch (ch) {
                 case '(' -> {
                     depth++;
-                    if (depth > 1) {
+                    if (depth == 3) {
                         return false;
                     }
                 }
                 case ')' -> depth--;
                 case '/' -> {
-                    if (depth == 0) {
+                    if (depth == 1) {
                         return false;
                     }
                     i++;
                 }
                 case '\\' -> {
-                    if (depth == 1) {
+                    if (depth == 2) {
                         return false;
                     }
                     i++;
